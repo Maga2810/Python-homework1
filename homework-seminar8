@@ -1,0 +1,51 @@
+# Задача
+# Дополнить телефонный справочник возможностью изменения и удаления данных.
+# Пользователь также может ввести имя или фамилию, и Вы должны реализовать функционал для изменения 
+# и удаления данных
+
+
+
+phone_book = {'Иванов': '111-11-11', 'Петров': '222-22-22', 'Сидоров': '333-33-33'}
+
+def add_contact(name, phone_number):
+    """Добавление контакта в справочник"""
+    phone_book[name] = phone_number
+
+def delete_contact(name):
+    """Удаление контакта из справочника"""
+    if name in phone_book:
+        del phone_book[name]
+    else:
+        print(f'Контакт {name} не найден')
+
+def update_contact(name, new_phone_number):
+    """Обновление номера телефона контакта"""
+    if name in phone_book:
+        phone_book[name] = new_phone_number
+    else:
+        print(f'Контакт {name} не найден')
+
+def search_contact(name):
+    """Поиск контакта по имени или фамилии"""
+    if name in phone_book:
+        print(f'{name}: {phone_book[name]}')
+    else:
+        print(f'Контакт {name} не найден')
+
+
+# Добавляем новый контакт
+add_contact('Козлов', '444-44-44')
+
+# Обновляем номер телефона у существующего контакта
+update_contact('Петров', '555-55-55')
+
+# Ищем контакт по имени или фамилии
+search_contact('Иванов')
+search_contact('Петров')
+
+
+# Удаляем контакт
+delete_contact('Сидоров')
+
+# Проверяем, что контакт удален
+search_contact('Сидоров')

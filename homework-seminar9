@@ -1,0 +1,45 @@
+# Задача 1
+# Работать с файлом california_housing_train.csv, который находится в папке sample_data. 
+# Определить среднюю стоимость дома, где кол-во людей от 0 до 500 (population)
+
+import pandas as pd
+
+# Чтение файла
+data = pd.read_csv('sample_data/california_housing_train.csv')
+
+# Фильтрация данных по количеству людей
+filtered_data = data[(data['population'] >= 0) & (data['population'] <= 500)]
+
+# Вычисление средней стоимости дома для отфильтрованных данных
+mean_house_price = filtered_data['median_house_value'].mean()
+
+# Вывод результата
+print("Средняя стоимость дома, где кол-во людей от 0 до 500: $", round(mean_house_price, 2))
+
+
+
+
+
+
+# Задача 2
+# Узнать какая максимальная households в зоне минимального значения population
+
+import pandas as pd
+
+# Чтение файла
+data = pd.read_csv('sample_data/california_housing_train.csv')
+
+# Сортировка данных по количеству людей
+sorted_data = data.sort_values(by=['population'], ascending=True)
+
+# Нахождение минимального значения количества людей
+min_population = sorted_data['population'].min()
+
+# Фильтрация данных по минимальному значению количества людей
+filtered_data = sorted_data[sorted_data['population'] == min_population]
+
+# Нахождение максимального значения households в отфильтрованных данных
+max_households = filtered_data['households'].max()
+
+# Вывод результата
+print("Максимальное количество households в зоне минимального значения population: ", max_households)
